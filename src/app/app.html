@@ -1,0 +1,444 @@
+<a class="skip-link" href="#conteudo">Pular para conteúdo</a>
+
+<header class="topbar">
+  <div class="container topbarInner">
+    <a class="brand" href="#inicio" aria-label="Ir para início">
+      <span class="brandDot" aria-hidden="true"></span>
+      <span>Portfólio</span>
+    </a>
+
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="#sobre">Sobre</a>
+      <a href="#formacao">Formação</a>
+      <a href="#experiencia">Atuação</a>
+      <a href="#tecnologias">Tecnologias</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
+    <a class="btn btnPrimary topbarCta" href="#contato">
+      Falar comigo
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M5 12h12M13 6l6 6-6 6"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </a>
+  </div>
+</header>
+
+<main id="conteudo">
+  <section id="inicio" class="hero">
+    <div class="container heroInner">
+      <div class="heroLeft">
+        <div class="heroId">
+          @if (portfolio.person.photo?.src) {
+            <img
+              class="avatar avatarHero"
+              [src]="portfolio.person.photo?.src"
+              [alt]="portfolio.person.photo?.alt || ('Foto de ' + portfolio.person.name)"
+              loading="lazy"
+              decoding="async"
+            />
+          } @else {
+            <div class="avatar avatarFallback avatarHero" aria-hidden="true">
+              <span>{{ portfolio.person.name.slice(0, 1).toUpperCase() }}</span>
+            </div>
+          }
+
+          <div class="heroIdText">
+            <div class="pill">
+              <span class="pulse" aria-hidden="true"></span>
+              {{ portfolio.person.role }} • {{ portfolio.person.location }}
+            </div>
+          </div>
+        </div>
+
+        <h1 class="heroTitle">
+          Olá, eu sou <span class="grad">{{ portfolio.person.name }}</span>
+        </h1>
+
+        <p class="heroSubtitle">{{ portfolio.person.summary }}</p>
+
+        <div class="btnRow">
+          <a class="btn btnPrimary" href="#projetos">
+            Ver projetos
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M5 12h12M13 6l6 6-6 6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+
+          <a class="btn" [href]="emailHref">
+            Email
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M10 14a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <path
+                d="M14 10a5 5 0 0 1 0 7l-1 1a5 5 0 1 1-7-7l1-1"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </a>
+
+          @if (portfolio.links.github) {
+            <a class="btn" [href]="portfolio.links.github" target="_blank" rel="noreferrer">
+              GitHub
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M10 14a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M14 10a5 5 0 0 1 0 7l-1 1a5 5 0 1 1-7-7l1-1"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </a>
+          }
+
+          @if (portfolio.links.linkedin) {
+            <a class="btn" [href]="portfolio.links.linkedin" target="_blank" rel="noreferrer">
+              LinkedIn
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M10 14a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M14 10a5 5 0 0 1 0 7l-1 1a5 5 0 1 1-7-7l1-1"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </a>
+          }
+        </div>
+
+        <div class="heroMeta">
+          @if (portfolio.about.focusAreas.length > 0) {
+            <span class="metaItem"><strong>Foco:</strong> {{ portfolio.about.focusAreas[0] }}</span>
+          }
+        </div>
+      </div>
+
+      <div class="heroRight">
+        <div class="heroCard">
+          <h3>O que eu entrego</h3>
+          <ul class="checklist">
+            <li>UI moderna e responsiva</li>
+            <li>Acessibilidade e semântica</li>
+            <li>Performance (Lighthouse)</li>
+            <li>Integrações e boas práticas</li>
+          </ul>
+        </div>
+
+        <div class="heroCard heroCardAlt">
+          <h3>Stack preferida</h3>
+          <div class="tags">
+            @for (t of portfolio.technologies.primary; track t) {
+              <span class="tag">{{ t }}</span>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" class="section">
+    <div class="container">
+      <div class="sectionTitle">
+        <h2>Sobre</h2>
+        <p>Perfil, objetivos e foco atual</p>
+      </div>
+
+      <div class="grid">
+        <div class="card span7">
+          <div class="prose">
+            @for (p of portfolio.about.paragraphs; track p) {
+              <p>{{ p }}</p>
+            }
+          </div>
+        </div>
+
+        <div class="card span5">
+          <h3>Áreas de atuação</h3>
+          <ul class="list">
+            @for (a of portfolio.about.focusAreas; track a) {
+              <li>{{ a }}</li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="formacao" class="section">
+    <div class="container">
+      <div class="sectionTitle">
+        <h2>Formação</h2>
+        <p>Acadêmica e cursos relevantes</p>
+      </div>
+
+      <div class="grid">
+        @for (e of portfolio.education; track e.title) {
+          <article class="card span6">
+            <div class="cardTop">
+              <h3>{{ e.title }}</h3>
+              <span class="tag">{{ e.period }}</span>
+            </div>
+            <p class="muted">{{ e.institution }}</p>
+            @if (e.details) {
+              <p class="muted">{{ e.details }}</p>
+            }
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="experiencia" class="section">
+    <div class="container">
+      <div class="sectionTitle">
+        <h2>Área de atuação</h2>
+        <p>Experiência e responsabilidades</p>
+      </div>
+
+      <div class="grid">
+        @for (x of portfolio.experience; track x.title + x.period) {
+          <article class="card span6">
+            <div class="cardTop">
+              <h3>{{ x.title }}</h3>
+              <span class="tag">{{ x.period }}</span>
+            </div>
+            @if (x.company) {
+              <p class="muted">{{ x.company }}</p>
+            }
+            <ul class="list">
+              @for (d of x.details; track d) {
+                <li>{{ d }}</li>
+              }
+            </ul>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="tecnologias" class="section">
+    <div class="container">
+      <div class="sectionTitle">
+        <h2>Tecnologias</h2>
+        <p>Ferramentas que uso no dia a dia</p>
+      </div>
+
+      <div class="grid">
+        <div class="card span4">
+          <h3>Principais</h3>
+          <div class="tags">
+            @for (t of portfolio.technologies.primary; track t) {
+              <span class="tag">{{ t }}</span>
+            }
+          </div>
+        </div>
+
+        <div class="card span4">
+          <h3>Secundárias</h3>
+          <div class="tags">
+            @for (t of portfolio.technologies.secondary; track t) {
+              <span class="tag">{{ t }}</span>
+            }
+          </div>
+        </div>
+
+        <div class="card span4">
+          <h3>Ferramentas</h3>
+          <div class="tags">
+            @for (t of portfolio.technologies.tools; track t) {
+              <span class="tag">{{ t }}</span>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos" class="section" 
+      style="display: none;"> <!-- Ocultado temporariamente -->
+    <div class="container">
+      <div class="sectionTitle">
+        <h2>Projetos</h2>
+        <p>Cases, repositórios e demos</p>
+      </div>
+
+      <div class="grid">
+        @for (p of portfolio.projects; track p.title) {
+          <article class="card span6 project" [ngClass]="{ projectHi: !!p.highlight }">
+            <div class="cardTop">
+              <h3>{{ p.title }}</h3>
+              @if (p.highlight) {
+                <span class="tag">Destaque</span>
+              }
+            </div>
+            <p class="muted">{{ p.description }}</p>
+            <div class="tags">
+              @for (t of p.tech; track t) {
+                <span class="tag">{{ t }}</span>
+              }
+            </div>
+            <div class="projectLinks">
+              @for (l of p.links; track l.href) {
+                <a class="btn" [href]="l.href" target="_blank" rel="noreferrer">
+                  {{ l.label }}
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M10 14a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M14 10a5 5 0 0 1 0 7l-1 1a5 5 0 1 1-7-7l1-1"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </a>
+              }
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="section">
+    <div class="container">
+      <div class="sectionTitle">
+        <h2>Contato</h2>
+        <p>Vamos conversar sobre seu projeto</p>
+      </div>
+
+      <div class="grid">
+        <div class="card span7">
+          <h3>Mensagem rápida</h3>
+          <p class="muted">
+            Me chame por email ou LinkedIn. Se preferir, pode abrir um PR em algum repositório meu.
+          </p>
+
+          <div class="btnRow">
+            <a class="btn btnPrimary" [href]="emailHref">
+              Enviar email
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M5 12h12M13 6l6 6-6 6"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+
+            @if (portfolio.links.linkedin) {
+              <a class="btn" [href]="portfolio.links.linkedin" target="_blank" rel="noreferrer">
+                LinkedIn
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M10 14a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M14 10a5 5 0 0 1 0 7l-1 1a5 5 0 1 1-7-7l1-1"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </a>
+            }
+
+            @if (portfolio.links.whatsapp) {
+              <a class="btn" [href]="portfolio.links.whatsapp" target="_blank" rel="noreferrer">
+                WhatsApp
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M10 14a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M14 10a5 5 0 0 1 0 7l-1 1a5 5 0 1 1-7-7l1-1"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </a>
+            }
+          </div>
+        </div>
+
+        <div class="card span5">
+          <h3>Detalhes</h3>
+          <ul class="list">
+            <li><strong>Email:</strong> {{ portfolio.links.email }}</li>
+            @if (portfolio.links.github) {
+              <li>
+                <strong>GitHub:</strong>
+                <a [href]="portfolio.links.github" target="_blank" rel="noreferrer">
+                  {{ portfolio.links.github.replace('https://', '') }}
+                </a>
+              </li>
+            }
+            @if (portfolio.links.linkedin) {
+              <li>
+                <strong>LinkedIn:</strong>
+                <a [href]="portfolio.links.linkedin" target="_blank" rel="noreferrer">
+                  {{ portfolio.links.linkedin.replace('https://', '') }}
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footerInner">
+    <span>© {{ year }} {{ portfolio.person.name }}. Feito com Angular.</span>
+    <span class="footerLinks">
+      <a href="#inicio">Topo</a>
+      <span aria-hidden="true">·</span>
+      <a [href]="emailHref">Email</a>
+    </span>
+  </div>
+</footer>
